@@ -1,0 +1,9 @@
+c56dd0097f4e5aece303f062818a39e8 *DESCRIPTION
+20eaa60d197ca43e18368de1ffbd5d78 *NAMESPACE
+b3b9297b0d2809198f048e7ceb090129 *NEWS
+032ebb63e079cc35d466e1da8f6f5390 *R/dfsaneacc.R
+a871ae135d4bf627feec64586c54fb38 *build/partial.rdb
+3a99e506f96c03eec08a4d80d465f391 *man/dfsaneacc-package.Rd
+dfeedc59b9e9111335cffd2896e6bfb4 *man/dfsaneacc.Rd
+f34bfafc789a095831866c158b9ffd75 *src/qr.f95
+356595ff9a7dc70cb8362d8b2ad65e3a *src/qr_interface.c
