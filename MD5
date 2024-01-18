@@ -1,9 +1,9 @@
-990b8a121c2e1458cc43859f3fc17049 *DESCRIPTION
+2445486d568adc8f2d19f1aa6211e588 *DESCRIPTION
 20eaa60d197ca43e18368de1ffbd5d78 *NAMESPACE
-b3b9297b0d2809198f048e7ceb090129 *NEWS
+ec92e1b3569cd06d7854a81a5c2ba110 *NEWS
 032ebb63e079cc35d466e1da8f6f5390 *R/dfsaneacc.R
-3b0008d09a6e3b6910d63ad2e484ae37 *build/partial.rdb
-3a99e506f96c03eec08a4d80d465f391 *man/dfsaneacc-package.Rd
-dfeedc59b9e9111335cffd2896e6bfb4 *man/dfsaneacc.Rd
+550b508a4cb58b577a0cf1cb41062c05 *build/partial.rdb
+ad4eff7aa1fee7f62f3827aaa657c2b7 *man/dfsaneacc-package.Rd
+a8a46d1335c46b0371f25b4da8d440bc *man/dfsaneacc.Rd
 f5aa5a8f597808fd1604a1c557059221 *src/qr.f95
 356595ff9a7dc70cb8362d8b2ad65e3a *src/qr_interface.c
