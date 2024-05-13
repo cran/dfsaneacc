@@ -102,7 +102,7 @@ contains
        if ( .not. any( p(1:m) .eq. k ) ) then
           ! write(*,*) 'ERROR in subroutine qr: (A) Permutation array p is wrong. There is no k = ',k
           ! write(*,*) 'm = ',m,' p = ',p(1:m)
-          call exit()
+          call rexit('ERROR in subroutine qr: (A) Permutation array p is wrong.')
        end if
     end do
 
@@ -274,28 +274,28 @@ contains
     if ( n .lt. m .or. rank .gt. m .or. m .gt. mlim .or. ldq .lt. n ) then ! .or. ldr .lt. mlim ) then
        ! write(*,*) 'ERROR in subroutine qrupdate: Check n, m, rank, mlim, ldq, and ldr!', &
        !     n, m, rank, mlim, ldq, ldr, n .lt. m, rank .gt. m, m .gt. mlim, ldq .lt. n, ldr .lt. mlim
-       call exit()
+       call rexit('ERROR in subroutine qrupdate: Check n, m, rank, mlim, ldq, and ldr!')
     end if
 
     if ( .not. ( 0 .le. jtbr .and. jtbr .le. m ) ) then
        ! write(*,*) 'ERROR in subroutine qrupdate: jtbr must be between 0 and m! m = ',m,' jtbr = ',jtbr
-       call exit()
+       call rexit('ERROR in subroutine qrupdate: jtbr must be between 0 and m!')
     end if
 
     if ( jtbr .eq. 0 .and. m .eq. mlim ) then
        ! write(*,*) 'ERROR in subroutine qrupdate: There is no space for adding a new column without removing another column!'
-       call exit()
+       call rexit('ERROR in subroutine qrupdate: There is no space for adding a new column without removing another column!')
     end if
 
     if ( any( Q(1:n,1:rank) /= Q(1:n,1:rank) ) .or. any( R(1:rank,1:m) /= R(1:rank,1:m) ) ) then
        ! write(*,*) 'ERROR in subroutine qrupdate: NaN in Q or R!'
-       call exit()
+       call rexit('ERROR in subroutine qrupdate: NaN in Q or R!')
     end if
 
     if ( newcolp .ne. 0 ) then
        if ( any( newcol(1:n) /= newcol(1:n) ) ) then
           ! write(*,*) 'ERROR in subroutine qrupdate: NaN in newcol!'
-          call exit()
+          call rexit('ERROR in subroutine qrupdate: NaN in newcol!')
        end if
     end if
 
@@ -303,7 +303,7 @@ contains
        if ( .not. any( p(1:m) .eq. k ) ) then
           ! write(*,*) 'ERROR in subroutine qrupdate: (B) Permutation array p is wrong. There is no k = ',k
           ! write(*,*) 'm = ',m,' p = ',p(1:mlim)
-          call exit()
+          call rexit('ERROR in subroutine qrupdate: (B) Permutation array p is wrong.')
        end if
     end do
 
@@ -402,7 +402,7 @@ contains
 
        if ( any( Q(1:n,1:rank) /= Q(1:n,1:rank) ) .or. any( R(1:rank,1:m) /= R(1:rank,1:m) ) ) then
           ! write(*,*) 'ERROR in subroutine qrupdate: NaN was created! (place 1)'
-          call exit()
+          call rexit('ERROR in subroutine qrupdate: NaN was created! (place 1)')
        end if
     end if
 
@@ -441,19 +441,19 @@ contains
        if ( .not. any( p(1:m) .eq. k ) ) then
           ! write(*,*) 'ERROR in subroutine qrupdate: (D) Permutation array p is wrong. There is no k = ',k
           ! write(*,*) 'm = ',m,' p = ',p(1:m)
-          call exit()
+          call rexit('ERROR in subroutine qrupdate: (D) Permutation array p is wrong.')
        end if
     end do
 
     if ( rank .gt. m ) then
        ! write(*,*) 'ERROR in subroutine qrupdate: There is something wrong because we ended with rank > m!'
        ! write(*,*) 'rank = ',rank,' m = ',m
-       call exit()
+       call rexit('ERROR in subroutine qrupdate: There is something wrong because we ended with rank > m!')
     end if
 
     if ( any( Q(1:n,1:rank) /= Q(1:n,1:rank) ) .or. any( R(1:rank,1:m) /= R(1:rank,1:m) ) ) then
        ! write(*,*) 'ERROR in subroutine qrupdate: NaN was created! (place 2)'
-       call exit()
+       call rexit('ERROR in subroutine qrupdate: NaN was created! (place 2)')
     end if
 
   end subroutine bmqrupdate
@@ -480,12 +480,12 @@ contains
 
     if ( any( b(1:n) /= b(1:n) ) .or. any( Q(1:n,1:rank) /= Q(1:n,1:rank) ) .or. any( R(1:rank,1:m) /= R(1:rank,1:m) ) ) then
        ! write(*,*) 'ERROR in subroutine qrsolve: NaN in Q, R, or b!'
-       call exit()
+       call rexit('ERROR in subroutine qrsolve: NaN in Q, R, or b!')
     end if
 
     if ( any( (/  ( R(k,k), k=1,rank ) /) .eq. 0.0d0 ) ) then
        ! write(*,*) 'ERROR in subroutine qrsolve: R with null diagonal!'
-       call exit()
+       call rexit('ERROR in subroutine qrsolve: R with null diagonal!')
     end if
 
     ! Q^t b
@@ -497,7 +497,7 @@ contains
        do k = rank,1,-1
           if ( R(k,k) .eq. 0.0d0 ) then
              ! write(*,*) 'ERROR in subroutine qrsolve: Division by zero (place 1)'
-             call exit()
+             call rexit('ERROR in subroutine qrsolve: Division by zero (place 1)')
           end if
 
           x(k) = x(k) / R(k,k)
@@ -520,14 +520,14 @@ contains
 
           if ( Rt(k,k) .eq. 0.0d0 ) then
              ! write(*,*) 'ERROR in subroutine qrsolve: Division by zero (place 2)'
-             call exit()
+             call rexit('ERROR in subroutine qrsolve: Division by zero (place 2)')
           end if
 
           Rt(k+1:m,k) = Rt(k+1:m,k) / Rt(k,k)
 
           if ( tau .eq. 0.0d0 ) then
              ! write(*,*) 'ERROR in subroutine qrsolve: Division by zero (place 3)',k,rank
-             call exit()
+             call rexit('ERROR in subroutine qrsolve: Division by zero (place 3)')
           end if
 
           kap(k) = Rt(k,k) / tau
@@ -546,7 +546,7 @@ contains
        do k = 1,rank
           if ( Rt(k,k) .eq. 0.0d0 ) then
              ! write(*,*) 'ERROR in subroutine qrsolve: Division by zero (place 4)'
-             call exit()
+             call rexit('ERROR in subroutine qrsolve: Division by zero (place 4)')
           end if
 
           x(k) = ( x(k) - dot_product( Rt(1:k-1,k), x(1:k-1) ) ) / Rt(k,k)
